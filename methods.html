@@ -1,0 +1,227 @@
+<!DOCTYPE HTML>
+<!--
+	Helios by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>TIGRESS Methods and Code</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body class="no-sidebar">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<div id="header">
+
+					<!-- Inner -->
+                    <!--
+						<div class="inner">
+							<header>
+								<h1><a href="index.html" id="logo">TIGRESS</a></h1>
+							</header>
+						</div>
+                    -->
+
+					<!-- Nav -->
+					<!-- Nav -->
+						<nav id="nav">
+							<ul>
+								<li><a href="index.html">Home</a></li>
+                                <li><a href="methods.html">Methods & Code</a></li>
+                                <li>
+									<a href="#">Models</a>
+									<ul>
+										<li><a href="#">Solar Neighborhood</a></li>
+										<li>
+											<a href="#">Milky Way-like &hellip;</a>
+											<ul>
+												<li><a href="#">R2</a></li>
+												<li><a href="#">R4</a></li>
+												<li><a href="#">R8</a></li>
+                                                <li><a href="#">R16</a></li>
+											</ul>
+										</li>
+                                        <li>
+											<a href="#">Dwarf-like &hellip;</a>
+											<ul>
+												<li><a href="#">R2</a></li>
+												<li><a href="#">R4</a></li>
+												<li><a href="#">R8</a></li>
+                                                <li><a href="#">R16</a></li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+
+								<li>
+									<a href="#">Projects</a>
+									<ul>
+										<li><a href="#">SFR regulation</a></li>
+										<li><a href="#">Galactic Winds and Fountains</a></li>
+                                        <li><a href="#">MHD Dynamo</a></li>
+                                        <li><a href="#">Metals Mixing</a></li>
+                                        <li><a href="#">Chemistry</a></li>
+                                        <li><a href="#">Ram Pressure Stripping</a></li>
+                                        <li><a href="#">Radiation Transfer</a></li>
+										<li>
+											<a href="#">Synthetic Observations &hellip;</a>
+											<ul>
+												<li><a href="#">Dust Polarization</a></li>
+												<li><a href="#">HI 21cm Lines</a></li>
+												<li><a href="#">Molecules</a></li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li><a href="team.html">Team</a></li>
+								<li><a href="pub.html">Publications</a></li>
+							</ul>
+						</nav>
+
+				</div>
+
+			<!-- Main -->
+				<div class="wrapper style1">
+
+					<div class="container">
+						<article id="main" class="special">
+							<header>
+								<h2><a href="#">Methods</a></h2>
+
+							</header>
+                            <section>
+                            <h3>
+                                TIGRESS builds on the <a href="https://github.com/PrincetonUniversity/Athena-Cversion">Athena MHD code</a> 
+                                package with additional physical modules including:
+                            </h3>
+
+                            <ul class="default">
+                                <li>sink/star particles (see <a href="http://adsabs.harvard.edu/abs/2013ApJS..204....8G">Gong &amp; Ostriker 2013</a>) 
+                                    <!--<code>--enable-starparticle --enable-starparstrict</code>-->
+                                    <ul class="default">
+                                        <li>SN rates and FUV luminosity as a function of cluster age and mass, based on 
+                                            <a href="http://adsabs.harvard.edu/abs/1999ApJS..123....3L">STARBURST99</a></li>
+
+                                        <li>runaway OB stars from binaries</li>
+                                    </ul>
+                                </li>
+
+                                <li>supernova feedback (see also <a href="http://adsabs.harvard.edu/abs/2015ApJ...802...99K">Kim &amp; Ostriker 2015</a>)
+                                    <ul class="default">
+                                        
+                                        <li>2/3 of SNe occur in binary OB stars</li>
+
+                                        <li>secondary OB stars are ejected with the exponential velocity distribution for 20km/s &lt; v &lt; 
+                                            200km/s with a characteristic velocity of v0=50km/s (motivated by Figure 2 in 
+                                            <a href="http://adsabs.harvard.edu/abs/2011MNRAS.414.3501E">Eldridge+ 2011</a>)
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li>optically thin cooling (tabulated) (see <a href="http://adsabs.harvard.edu/abs/2002ApJ...564L..97K">Koyama &amp; Inutsuka 2002</a> and 
+                                    <a href="http://adsabs.harvard.edu/abs/1993ApJS...88..253S">Sutherland &amp; Dopita 1993</a>) 
+                                    <!--<code>--enable-cooling</code>-->
+                                </li>
+
+                                <li>time-dependent photoelectric heating due to FUV radiation from young stars</li>
+                            </ul>
+
+                            <h3>After extensive tests to determine the best working configuration with the ideal MHD solver 
+                                <!--<code>--with-gas=mhd</code>-->, TIGRESS adopts:</h3>
+
+                            <ul class="default">
+                                <li>the <a href="http://adsabs.harvard.edu/abs/2009NewA...14..139S">van Leer integrator</a> 
+                                    <!--<code>--with-integrator=vl</code>-->
+                                </li>
+
+                                <li>2nd order (piecewise linear) interpolation 
+                                    <!--<code>--with-order=2p</code>-->
+                                </li>
+
+                                <li>Roe's Riemann solver and <a href="http://adsabs.harvard.edu/abs/1998JCoPh.145..511S">H-correction</a> 
+                                    <!--<code>--with-flux=roe --enable-h-correction</code>-->
+                                </li>
+
+                                <li>first-order flux correction (see Appendix in <a href="http://adsabs.harvard.edu/abs/2009ApJ...691.1092L">Lemaster &amp; Stone 2009</a>)
+                                    <!--<code>--enable-fofc</code>-->
+                                </li>
+                            </ul>
+
+                            <h3>TIGRESS utilizes Athena's additional features including</h3>
+
+                            <ul class="default">
+                                <li><a href="http://adsabs.harvard.edu/abs/2010ApJS..189..142S">shearing Box</a> 
+                                    <!--<code>--enable-shearing-box</code>-->
+
+                                    <ul class="default">
+                                        <li>obital advection (a.k.a. FARGO) scheme is <em>not</em> used</li>
+                                    </ul>
+                                </li>
+
+                                <li>self-gravity solver using the FFT method (adopt Nicole Lemaster's implementation of 
+                                    <a href="http://www.sandia.gov/~sjplimp/docs/fft/README.html">Plimpton's parallel FFT</a>) 
+                                    <!--<code>--with-gravity=fft_disk --enable-fft</code>-->
+
+                                    <ul class="default">
+                                        <li><a href="http://adsabs.harvard.edu/abs/2001ApJ...553..174G">shearing-periodic BCs in the horizontal directions</a> </li>
+
+                                        <li><a href="http://adsabs.harvard.edu/abs/2009ApJ...693.1316K">vacuum BCs in the vertical direction</a> </li>
+                                    </ul>
+                                </li>
+                            </ul>
+
+                            <h3>See the <a href="http://adsabs.harvard.edu/abs/2017ApJ...846..133K">TIGRESS method paper</a> (Kim &amp; Ostriker 2017) for details.</h3>
+                            </section>
+						</article>
+						<hr />
+					</div>
+
+				</div>
+
+			<!-- Footer -->
+				<div id="footer">
+					<div class="container">
+						<hr />
+						<div class="row">
+							<div class="12u">
+
+                            <!-- Contact -->
+                                <section class="contact">
+                                    <ul class="icons">
+                                        <li><a href="https://github.com/PrincetonUniversity/Athena-TIGRESS/" class="icon fa-github"><span class="label">Github</span></a></li>
+                                        <li><a href="#" class="ai ai-ads"><span class="label">ADS</span></a></li>
+                                        <li><a href="#" class="ai ai-orcid"><span class="label">ORCID</span></a></li>
+                                        <li><a href="#" class="ai ai-google-scholar"><span class="label">Google</span></a></li>
+                                    </ul>
+                                    <ul class="menu">
+                                        <li>&copy; 2017 <a href="http://changgoo.github.io/index.html">Chang-Goo Kim</a> and 
+                                            <a href="https://web.astro.princeton.edu/people/eve-ostriker">Eve C. Ostriker</a></li>
+                                        <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+                                    </ul>
+                                </section>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.dropotron.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.onvisible.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
